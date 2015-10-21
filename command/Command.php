@@ -12,10 +12,21 @@ abstract class Command{
 
 	final function __construct(){}
 
+	function execute(\controller\Request $request){
+		$this->status = $this->doExecute( $request );
+		$request->setCommand( $this );
+	}
+
+	function getStatus(){
+		return $this->status;
+	}
+
 	static function statuses( $str='CMD_DEFAULT' ){
 		if (isset( self::$STATUS_STRINGS[$str] )){
 			return self::$STATUS_STRINGS[$str];
 		}
 		throw new Exception("не знает статус");
 	}
+
+	abstract function doExecute( \controller\Request $request );
 }
