@@ -43,8 +43,36 @@ class ApplicationHelper {
 				$stat_str = "CMD_DEFAULT";
 			}
 			$status = \command\Command::statuses($stat_str);
-			$map->addView( 'default', $statuses, (string)$default_view );
+			$map->addView( 'default', $status, (string)$default_view );
 		}
+		foreach ( $options->control->command as $command_view ) {
+			$command = trim((string)$command_view['name']);
+			if ($command_view->classalias){
+				$classalias = trim((string)$command_view->classalias['name']);
+				$map->addClassRoot($command, $classalias);
+			}
+			if ($command_view->view){
+				$view = trim((string)$command_view->view);
+				$forward = trim((string)$command_view->forward);
+				$map->addView($command, 0, $view);
+				if ($forward){
+					$map->addForward($command, 0, $forward);
+				}
+				foreach($command_view->status as $command_view_status){
+					$view = trim((string)$command_view_status->view);
+					$forward = trim((string)$command_view_status->forward);
+					$stat_str = trim($command_view_status['value']);
+					$status = \command\Command::statuses($stat_str);
+					if ($view){
+						$map->addView($command, $status, $view);
+					}
+					if ($forward){
+						$map->addForward($command, $status, $forward);
+					}
+				}
+			}
+		}
+		\base\ApplicationRegistry::setControllerMap($map);
 	}
 
 	private function ensure($expr, $message){
