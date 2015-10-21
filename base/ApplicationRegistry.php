@@ -4,6 +4,8 @@ namespace base;
 class ApplicationRegistry extends \base\Registry{
 
 	private $value = [];
+	private $request = null;
+	private $appController = null;
 
 	private function __construct(){}
 	private function __clone(){}
@@ -22,6 +24,8 @@ class ApplicationRegistry extends \base\Registry{
 		return $this->value[$key];
 	}
 
+
+// Сохранения localhost, имя базы, имя пользователя и пороль
 	static function setDSN($dsn){
 		self::instance()->set('dsn', $dsn);
 	}
@@ -44,5 +48,31 @@ class ApplicationRegistry extends \base\Registry{
 
 	static function getPassword(){
 		return self::instance()->get('password');
+	}
+// конец сохранения localhost, имя базы, имя пользователя и пороль
+
+	static function setControllerMap($map){
+		self::instance()->set('cmap', $map);
+	}
+
+	static function getControllerMap(){
+		return self::instance()->get('cmap');
+	}
+
+	static function getRequest(){
+		$inst = self::instance();
+		if (is_null($inst->request)){
+			$inst->request = new \controller\Request;
+		}
+		return $inst->request;
+	}
+
+	static function appController(){
+		$inst = self::instance();
+		if (is_null($inst->appController)){
+			$cmap = self::getControllerMap();
+			$inst->appController = new \controller\AppController($cmap);
+		}
+		return $inst->appController;
 	}
 }

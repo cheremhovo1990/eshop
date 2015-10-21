@@ -15,6 +15,7 @@ class FrontController {
 		$applicationHelper->init();
 	}
 	function handleRequest(){
-
+		$request = \base\ApplicationRegistry::getRequest();
+		$app_c = \base\ApplicationRegistry::appController();
 	}
 }
