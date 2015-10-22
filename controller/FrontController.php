@@ -17,5 +17,12 @@ class FrontController {
 	function handleRequest(){
 		$request = \base\ApplicationRegistry::getRequest();
 		$app_c = \base\ApplicationRegistry::appController();
+		while( $cmd = $app_c->getCommand( $request ) ){
+			$cmd->execute( $request );
+		}
+		$this->invoked($app_c->getView($request));
+	}
+	function invoked($target){
+		echo $target;
 	}
 }
