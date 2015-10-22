@@ -29,7 +29,7 @@ class ControllerMap {
 		if ($this->classRootMap[$command]){
 			return $this->classRootMap[$command];
 		}
-		return null;
+		return $command;
 	}
 
 	function addForward($command, $status=0, $newCommand){
