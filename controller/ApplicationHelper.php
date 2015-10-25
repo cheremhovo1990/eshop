@@ -38,8 +38,8 @@ class ApplicationHelper {
 
 		$map = new \controller\ControllerMap();
 		foreach ($options->control->view as $default_view) {
-			$stat_str = trim($default_view);
-			if (empty($str_str)){
+			$stat_str = trim($default_view['status']);
+			if (empty($stat_str)){
 				$stat_str = "CMD_DEFAULT";
 			}
 			$status = \command\Command::statuses($stat_str);
@@ -77,7 +77,7 @@ class ApplicationHelper {
 
 	private function ensure($expr, $message){
 		if(!$expr){
-			throw new Exception($message);
+			throw new \Exception($message);
 		}
 	}
 }
