@@ -4,6 +4,7 @@ namespace controller;
 class Request {
 	private $get = [];
 	private $lastCommand;
+	private $title = null;
 
 	function __construct(){
 		$this->init();
@@ -28,5 +29,9 @@ class Request {
 
 	function getLastCommand(){
 		return $this->lastCommand;
+	}
+
+	function getTitle(){
+		return $this->title;
 	}
 }
