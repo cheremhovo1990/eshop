@@ -26,10 +26,19 @@ class ConnectPDO {
         $this->db->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
     }
 
-
     public static function instance( )
     {
         is_null(self::$istance) AND self::$istance = new self();
-        return self::$istance->db;
+        return self::$istance;
+    }
+
+    // Заключает строку в кавычки для использования в запросе и Удаляет пробелы из начала и конца строки
+    function quote($string){
+        $this->db->quote(trim($string));
+        return $string;
+    }
+
+    function query($sql){
+        return  $this->db->query($sql);
     }
 }
