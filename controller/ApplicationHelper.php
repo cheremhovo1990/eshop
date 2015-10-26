@@ -3,7 +3,7 @@ namespace controller;
 
 class ApplicationHelper {
 
-	private $config = '../options.xml';
+	private $config = './options.xml';
 
 	private function __construct(){}
 	private function __clone(){}
