@@ -5,6 +5,7 @@ class Request {
 	private $get = [];
 	private $lastCommand;
 	private $title = null;
+	private $array = [];
 
 	function __construct(){
 		$this->init();
@@ -37,5 +38,13 @@ class Request {
 
 	function setTitle($title){
 		$this->title = $title;
+	}
+
+	function setArray($id,array $array){
+		$this->array[$id] = $array;
+	}
+
+	function getArray($id){
+		return $this->array[$id];
 	}
 }
