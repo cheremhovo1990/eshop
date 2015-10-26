@@ -24,17 +24,8 @@ class ApplicationHelper {
 		$this->ensure( file_exists($this->config), "Не могу найти файл опции" );
 		$options = simplexml_load_file( $this->config );
 		$this->ensure( $options instanceof \SimpleXMLElement, "Не могу преобразовать xml файл" );
+		$this->configPDO($options);
 
-		// настройки базы PDO($dsn, $user, $password)
-		$dsn = (string)$options->dsn;
-		$this->ensure( $dsn, 'Не найден dsn' );
-		\base\ApplicationRegistry::setDSN($dsn);
-		$user = (string)$options->user;
-		$this->ensure( $user, 'Не задан пользователь' );
-		\base\ApplicationRegistry::setUser($user);
-		$password = (string)$options->password;
-		\base\ApplicationRegistry::setPassword($password);
-		// конец настройки базы
 
 		$map = new \controller\ControllerMap();
 		foreach ($options->control->view as $default_view) {
@@ -79,5 +70,23 @@ class ApplicationHelper {
 		if(!$expr){
 			throw new \Exception($message);
 		}
+	}
+
+	/**
+	 * @param $options
+	 * @throws \Exception
+	 */
+	private function configPDO($options)
+	{
+		// настройки базы PDO($dsn, $user, $password)
+		$dsn = (string)$options->dsn;
+		$this->ensure($dsn, 'Не найден dsn');
+		\base\ApplicationRegistry::setDSN($dsn);
+		$user = (string)$options->user;
+		$this->ensure($user, 'Не задан пользователь');
+		\base\ApplicationRegistry::setUser($user);
+		$password = (string)$options->password;
+		\base\ApplicationRegistry::setPassword($password);
+		// конец настройки базы
 	}
 }
