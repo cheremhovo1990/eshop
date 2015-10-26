@@ -34,7 +34,7 @@ class ConnectPDO {
 
     // Заключает строку в кавычки для использования в запросе и Удаляет пробелы из начала и конца строки
     function quote($string){
-        $this->db->quote(trim($string));
+        $string = $this->db->quote(trim($string));
         return $string;
     }
 
