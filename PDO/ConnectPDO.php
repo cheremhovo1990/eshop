@@ -18,7 +18,11 @@ class ConnectPDO {
         $dsn = \base\ApplicationRegistry::getDSN();
         $user = \base\ApplicationRegistry::getUser();
         $password = \base\ApplicationRegistry::getPassword();
-        $this->db = new \PDO($dsn, $user, $password);
+        $this->db = new \PDO($dsn, $user, $password,
+            [
+                \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'
+            ]
+        );
     }
 
 
