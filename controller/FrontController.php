@@ -23,6 +23,6 @@ class FrontController {
 		$this->invoked($app_c->getView($request));
 	}
 	function invoked($target){
-		echo $target;
+		include( "view/$target.php" );
 	}
 }
