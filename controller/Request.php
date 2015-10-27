@@ -6,7 +6,7 @@ class Request {
 	private $lastCommand;
 	private $title = null;
 	private $array = [];
-
+	private $errors = [];
 	function __construct(){
 		$this->init();
 	}
@@ -46,5 +46,13 @@ class Request {
 
 	function getArray($id){
 		return $this->array[$id];
+	}
+
+	function setErrors($error){
+		$this->errors[$error] = 1;
+	}
+
+	function getErrors(){
+		return $this->errors;
 	}
 }
