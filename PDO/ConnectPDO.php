@@ -41,4 +41,11 @@ class ConnectPDO {
     function query($sql){
         return  $this->db->query($sql);
     }
+
+    function exec($sql){
+        return $this->db->exec($sql);
+    }
+    function lastInsertId(){
+        return $this->db->lastInsertId();
+    }
 }
