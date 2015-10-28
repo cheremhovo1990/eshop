@@ -7,6 +7,7 @@ class Request {
 	private $title = null;
 	private $array = [];
 	private $errors = [];
+	private $variable = [];
 	function __construct(){
 		$this->init();
 	}
@@ -54,5 +55,13 @@ class Request {
 
 	function getErrors(){
 		return $this->errors;
+	}
+
+	function setVariable($name, $val){
+		$this->variable[$name] = $val;
+	}
+
+	function getVariable($name){
+		return $this->variable[$name];
 	}
 }
