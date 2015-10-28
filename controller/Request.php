@@ -11,7 +11,7 @@ class Request {
 		$this->init();
 	}
 	function init(){
-		if ($_SERVER['REQUEST_METHOD'] == 'GET'){
+		if ($_SERVER['REQUEST_METHOD'] == 'GET' || $_SERVER['REQUEST_METHOD'] == 'POST'){
 			$this->get = $_GET;
 		}
 	}
