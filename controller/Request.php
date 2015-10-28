@@ -49,7 +49,7 @@ class Request {
 	}
 
 	function setErrors($error){
-		$this->errors[$error] = 1;
+		$this->errors = $error;
 	}
 
 	function getErrors(){
