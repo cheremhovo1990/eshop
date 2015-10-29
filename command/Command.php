@@ -29,4 +29,12 @@ abstract class Command{
 	}
 
 	abstract function doExecute( \controller\Request $request );
+
+	function redirect_invalid_user($check = 'user_id', $destination = 'index.php', $protocol = 'http://'){
+		if (!isset($_SESSION[$check])) {
+			$url = $protocol . BASE_URL . $destination; // Define the URL.
+			header("Location: $url");
+			exit(); // Quit the script.
+		}
+	}
 }
