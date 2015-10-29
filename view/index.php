@@ -11,6 +11,7 @@ $request = VH::getRequest();
 
 $title = $request->getTitle();
 $cats = $request->getArray('cats');
+$login_errors = $request->getErrors();
 
 // To test the sidebars:
 //$_SESSION['user_id'] = 1;
@@ -23,9 +24,7 @@ $cats = $request->getArray('cats');
 
 // Next block added in Chapter 4:
 // If it's a POST request, handle the login attempt:
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-	include('./includes/login.inc.php');
-}
+
 
 // Include the header file:
 require "includes/header.php";
