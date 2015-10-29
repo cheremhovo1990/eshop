@@ -78,7 +78,7 @@ if (isset($_SESSION['user_id'])) {
 	echo '<li class="dropdown">
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
 		<ul class="dropdown-menu">
-			<li><a href="logout.php">Logout</a></li>
+			<li><a href="?cmd=logout">Logout</a></li>
 			<li><a href="renew.php">Renew</a></li>
 			<li><a href="change_password.php">Change Password</a></li>
 			<li><a href="favorites.php">Favorites</a></li>
