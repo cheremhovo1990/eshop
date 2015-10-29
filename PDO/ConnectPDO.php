@@ -48,4 +48,8 @@ class ConnectPDO {
     function lastInsertId(){
         return $this->db->lastInsertId();
     }
+
+    function prepare($sql){
+        return $this->db->prepare($sql);
+    }
 }
