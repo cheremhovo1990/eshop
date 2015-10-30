@@ -80,7 +80,7 @@ if (isset($_SESSION['user_id'])) {
 		<ul class="dropdown-menu">
 			<li><a href="?cmd=logout">Logout</a></li>
 			<li><a href="renew.php">Renew</a></li>
-			<li><a href="change_password.php">Change Password</a></li>
+			<li><a href="?cmd=change_password">Change Password</a></li>
 			<li><a href="favorites.php">Favorites</a></li>
 			<li><a href="recommendations.php">Recommendations</a></li>
 		</ul>
