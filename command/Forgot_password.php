@@ -97,6 +97,7 @@ If you have _not_ forgotten your password, you can safely ignore this message an
 			} // End of empty($pass_errors) IF.
 
 		}
+		$request->setErrors($pass_errors);
 		return self::statuses('CMD_DEFAULT');
 	}
 }
