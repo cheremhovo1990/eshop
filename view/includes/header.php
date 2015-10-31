@@ -91,7 +91,7 @@ if (isset($_SESSION['user_id'])) {
 		echo '<li class="dropdown">
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
 			<ul class="dropdown-menu">
-				<li><a href="add_page.php">Add Page</a></li>
+				<li><a href="?cmd=add_page">Add Page</a></li>
 				<li><a href="add_pdf.php">Add PDF</a></li>
 				<li><a href="#">Something else here</a></li>
 			</ul>
@@ -116,7 +116,7 @@ if (isset($_SESSION['user_id'])) {
 			<div class="list-group">
 <?php // Dynamically generate the content links:
 foreach( $cats as $cat ){
-	echo '<a href="category.php?id=' . $cat['id'] . '" class="list-group-item" title="' . $cat['category'] . '">' . htmlspecialchars($cat['category']) . '</a>';
+	echo '<a href="?cmd=category&id=' . $cat['id'] . '" class="list-group-item" title="' . $cat['category'] . '">' . htmlspecialchars($cat['category']) . '</a>';
 }
 
 ?>
