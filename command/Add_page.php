@@ -3,6 +3,7 @@ namespace command;
 
 class Add_page extends \command\Command{
 	function doExecute(\controller\Request $request){
+		$this->redirect_invalid_user('user_admin');
 		$pdo = \PDO\ConnectPDO::instance();
 		$request->setTitle('Add a Site Content Page');
 		$sql = 'SELECT * FROM categories ORDER BY category';
