@@ -33,7 +33,7 @@ require "includes/header.php";
 /* PAGE CONTENT STARTS HERE! */
 
 echo '<h1>' . htmlspecialchars($title) . '</h1>';
-var_dump($_SESSION['user_not_expired']);
+
 if (isset($_SESSION['user_id']) && !isset($_SESSION['user_not_expired'])) {
 	echo '<div class="alert"><h4>Expired Account</h4>Thank you for your interest in this content. Unfortunately your account has expired. Please <a href="renew.php">renew your account</a> in order to access site content.</div>';
 } elseif (!isset($_SESSION['user_id'])) {
