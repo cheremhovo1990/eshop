@@ -115,7 +115,7 @@ class Page extends \command\Command{
 				$request->setVariable('string', $string);
 			} else { // Not logged in.
 				$string = '<div class="alert">Thank you for your interest in this content. You must be logged in as a registered user to view this page in its entirety.</div>';
-				$string = '<div>' . htmlspecialchars($row['description']) . '</div>';
+				$string .= '<div>' . htmlspecialchars($row['description']) . '</div>';
 				$request->setVariable('string', $string);
 			}
 			//$request->setArray('page', $row);
