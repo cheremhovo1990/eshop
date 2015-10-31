@@ -53,7 +53,7 @@ class DefaultCommand extends \command\Command{
 						$_SESSION['username'] = $row['username'];
 
 						// Only indicate if the user's account is not expired:
-						if ($row['expired'] === 1) $_SESSION['user_not_expired'] = true;
+						if ($row['expired'] == 1) $_SESSION['user_not_expired'] = true;
 
 					} else { // Right email address, invalid password.
 						$login_errors['login'] = 'The email address and password do not match those on file.';
