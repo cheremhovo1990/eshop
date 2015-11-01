@@ -71,9 +71,9 @@ class Add_pdf extends \command\Command{
 						$_SESSION['pdf']['file_name'] = $file['name'];
 
 						// Print a message:
-						return self::statuses('CMD_OK');
-						//echo '<div class="alert alert-success"><h3>The file has been uploaded!</h3></div>';
 
+						//echo '<div class="alert alert-success"><h3>The file has been uploaded!</h3></div>';
+						$request->setVariable('string', '<div class="alert alert-success"><h3>The file has been uploaded!</h3></div>');
 					} else {
 						trigger_error('The file could not be moved.');
 						unlink ($file['tmp_name']);
@@ -114,14 +114,18 @@ class Add_pdf extends \command\Command{
 				if ($r === 1) { // If it ran OK.
 
 					// Rename the temporary file:
+					$tmp_name = trim($tmp_name, '\'');
 					$original =  PDFS_DIR . $tmp_name . '_tmp';
 					$dest =  PDFS_DIR . $tmp_name;
-					exit;
+	/*				echo $original;
+					echo '<br>';
+					echo $dest;
+					exit;*/
 					rename($original, $dest);
 
 					// Print a message:
-					echo '<div class="alert alert-success"><h3>The PDF has been added!</h3></div>';
-
+					//echo '<div class="alert alert-success"><h3>The PDF has been added!</h3></div>';
+					//
 					// Clear $_POST:
 					$_POST = array();
 
@@ -130,6 +134,7 @@ class Add_pdf extends \command\Command{
 
 					// Clear $file and $_SESSION['pdf']:
 					unset($file, $_SESSION['pdf']);
+					return self::statuses('CMD_OK');
 
 				} else { // If it did not run OK.
 					trigger_error('The PDF could not be added due to a system error. We apologize for any inconvenience.');

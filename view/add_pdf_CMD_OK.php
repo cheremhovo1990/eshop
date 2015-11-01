@@ -12,7 +12,7 @@ $request = VH::getRequest();
 $title = $request->getTitle();
 $cats = $request->getArray('cats');
 $add_pdf_errors = $request->getErrors();
-
+$string = $request->getVariable('string');
 // To test the sidebars:
 //$_SESSION['user_id'] = 1;
 //$_SESSION['user_admin'] = true;
@@ -31,8 +31,8 @@ require "includes/header.php";
 
 /* PAGE CONTENT STARTS HERE! */
 
-	echo '<div class="alert alert-success"><h3>The file has been uploaded!</h3></div>';
-
+	echo $string;
+	echo '<div class="alert alert-success"><h3>The PDF has been added!</h3></div>';
 // Include the footer file to complete the template:
 
 include "includes/footer.php";

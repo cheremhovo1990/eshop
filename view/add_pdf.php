@@ -12,7 +12,7 @@ $request = VH::getRequest();
 $title = $request->getTitle();
 $cats = $request->getArray('cats');
 $add_pdf_errors = $request->getErrors();
-
+$string = $request->getVariable('string');
 // To test the sidebars:
 //$_SESSION['user_id'] = 1;
 //$_SESSION['user_admin'] = true;
@@ -30,8 +30,9 @@ $add_pdf_errors = $request->getErrors();
 require "includes/header.php";
 
 /* PAGE CONTENT STARTS HERE! */
-?>
 
+echo $string;
+?>
 <h1>Add a PDF</h1>
 <form enctype="multipart/form-data" action="?cmd=add_pdf" method="post" accept-charset="utf-8">
 
