@@ -3,6 +3,7 @@ namespace command;
 
 class Add_pdf extends \command\Command{
 	function doExecute(\controller\Request $request){
+		$this->redirect_invalid_user('user_admin');
 		$pdo = \PDO\ConnectPDO::instance();
 		$request->setTitle('user_admin');
 		$sql = 'SELECT * FROM categories ORDER BY category';
