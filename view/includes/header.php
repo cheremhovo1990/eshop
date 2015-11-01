@@ -92,7 +92,7 @@ if (isset($_SESSION['user_id'])) {
 		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
 			<ul class="dropdown-menu">
 				<li><a href="?cmd=add_page">Add Page</a></li>
-				<li><a href="add_pdf.php">Add PDF</a></li>
+				<li><a href="?cmd=add_pdf">Add PDF</a></li>
 				<li><a href="#">Something else here</a></li>
 			</ul>
 		</li>';		
