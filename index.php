@@ -5,6 +5,7 @@ define ('PDFS_DIR', BASE_URI . 'pdfs' . DIRECTORY_SEPARATOR);
 session_start();
 
 spl_autoload_register(function($class){
+	$class = str_replace('\\', '/', $class);
 	require_once __DIR__ . DIRECTORY_SEPARATOR . $class . '.php';
 });
 

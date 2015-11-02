@@ -71,7 +71,7 @@ class AppController{
 
 	function resolveCommand($cmd){
 		$classroot = $this->controllerMap->getClassRoot($cmd);
-		$filepath = "command/$classroot.php";
+		$filepath = BASE_URI . "command/" . ucfirst($classroot) . ".php";
 		$classname = "\\command\\$classroot";
 		if ( file_exists($filepath) ){
 			require_once($filepath);
