@@ -1,0 +1,67 @@
+<options>
+	<dsn>mysql:dbname=eshop;dbhost=localhost</dsn>
+	<user>root</user>
+	<password></password>
+	<control>
+		<view>index</view>
+		<view status="CMD_OK">mainCMD_OK</view>
+		<view status="CMD_ERROR">mainCMD_ERROR</view>
+		<command name="register">
+			<view>register</view>
+			<status value="CMD_OK">
+				<view>register_CMD_OK</view>
+			</status>
+		</command>
+		<command name="logout">
+			<view>logout</view>
+		</command>
+		<command name="forgot_password">
+			<view>forgot_password</view>
+			<status value="CMD_OK">
+				<view>forgot_password_CMD_OK</view>
+			</status>
+		</command>
+		<command name="change_password">
+			<view>change_password</view>
+			<status value="CMD_OK">
+				<view>change_password_CMD_OK</view>
+			</status>
+		</command>
+		<command name="add_page">
+			<view>add_page</view>
+		</command>
+		<command name="category">
+			<view>category</view>]
+			<status value="CMD_ERROR">
+				<view>category_CMD_ERROR</view>
+			</status>
+			<status value="CMD_OK">
+				<view>category_CMD_OK</view>
+			</status>
+		</command>
+		<command name="page">
+			<view>page</view>
+			<status value="CMD_ERROR">
+				<view>page_CMD_ERROR</view>
+			</status>
+		</command>
+		<command name="add_pdf">
+			<view>add_pdf</view>
+			<status value="CMD_OK">
+				<view>add_pdf_CMD_OK</view>
+			</status>
+		</command>
+		<command name="pdfs">
+			<view>pdfs</view>
+			<status value="CMD_OK">
+				<view>pdfs_CMD_OK</view>
+			</status>
+		</command>
+		<command name="view_pdf">
+			<view>view_pdf</view>
+			<status value="CMD_ERROR">
+				<view>view_pdf_CMD_ERROR</view>
+			</status>
+		</command>
+	</control>
+</options>

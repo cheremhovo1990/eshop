@@ -47,8 +47,6 @@
 // Array of labels and pages (without extensions):
 $pages = array (
 	'Home' => 'index.php',
-	'About' => '#',
-	'Contact' => '#',
 	'Register' => '?cmd=register'
 );
 
@@ -79,10 +77,7 @@ if (isset($_SESSION['user_id'])) {
 	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
 		<ul class="dropdown-menu">
 			<li><a href="?cmd=logout">Logout</a></li>
-			<li><a href="renew.php">Renew</a></li>
 			<li><a href="?cmd=change_password">Change Password</a></li>
-			<li><a href="favorites.php">Favorites</a></li>
-			<li><a href="recommendations.php">Recommendations</a></li>
 		</ul>
 	</li>';
 
@@ -93,7 +88,6 @@ if (isset($_SESSION['user_id'])) {
 			<ul class="dropdown-menu">
 				<li><a href="?cmd=add_page">Add Page</a></li>
 				<li><a href="?cmd=add_pdf">Add PDF</a></li>
-				<li><a href="#">Something else here</a></li>
 			</ul>
 		</li>';		
 	}
