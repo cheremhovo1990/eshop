@@ -120,7 +120,7 @@ foreach( $cats as $cat ){
 }
 
 ?>
-			  <a href="pdfs.php" class="list-group-item" title="PDFs">PDF Guides
+			  <a href="?cmd=pdfs" class="list-group-item" title="PDFs">PDF Guides
 			  </a>
 			</div><!--/list-group-->
 
