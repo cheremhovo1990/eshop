@@ -12,8 +12,8 @@ $request = VH::getRequest();
 $title = $request->getTitle();
 $cats = $request->getArray('cats');
 //$login_errors = $request->getErrors();
+$pdf = $request->getArray('pdf');
 $string = $request->getVariable('string');
-$pdfs = $request->getArray('pdfs');
 // To test the sidebars:
 //$_SESSION['user_id'] = 1;
 //$_SESSION['user_admin'] = true;
@@ -31,15 +31,13 @@ $pdfs = $request->getArray('pdfs');
 require "includes/header.php";
 
 /* PAGE CONTENT STARTS HERE! */
-echo '<h1>PDF Guides</h1>';
+echo "<h1>{$pdf['title']}</h1>";
+
 echo $string;
 
-foreach ($pdfs as $row) {
- echo '<div><h4><a href="?cmd=view_pdf&id=' . htmlspecialchars($row['tmp_name']) . '">' . htmlspecialchars($row['title']) . ' </a> (' . $row['size'] . 'kb)</h4><p>' . htmlspecialchars($row['description']) . '</p></div>';
-}
+echo '<div>' . htmlspecialchars($pdf['description']) . '</div>';
  /* PAGE CONTENT ENDS HERE! */
 
 // Include the footer file to complete the template:
 
 include "includes/footer.php";
-
