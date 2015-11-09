@@ -17,12 +17,14 @@ class FrontController {
 	function handleRequest(){
 		$request = \eshop\base\ApplicationRegistry::getRequest();
 		$app_c = \eshop\base\ApplicationRegistry::appController();
+		$twig = ApplicationHelper::getTwig();
 		while( $cmd = $app_c->getCommand( $request ) ){
 			$cmd->execute( $request );
 		}
-		$this->invoked($app_c->getView($request));
+		$this->invoked($app_c->getView($request), $twig, $request->getDatatwig());
 	}
-	function invoked($target){
-		include( "view/$target.php" );
+	function invoked($target, $twig, $datatwig){
+		echo $twig->render($target . '.twig', $datatwig);
+		//include( "view/$target.php" );
 	}
 }

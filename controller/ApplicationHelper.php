@@ -89,4 +89,15 @@ class ApplicationHelper {
 		\eshop\base\ApplicationRegistry::setPassword($password);
 		// конец настройки базы
 	}
+
+	static public function getTwig()
+	{
+		static $twig = null;
+		if(is_null($twig)){
+			// объевление Twig
+			$twigloader = new \Twig_Loader_Filesystem( BASE_URI . 'view/templates');
+			$twig = new \Twig_Environment($twigloader);
+		}
+		return $twig;
+	}
 }

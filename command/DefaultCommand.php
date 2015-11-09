@@ -5,11 +5,13 @@ class DefaultCommand extends \eshop\command\Command{
 	function doExecute(\eshop\controller\Request $request){
 		$pdo = \eshop\PDO\ConnectPDO::instance();
 		//$request->setTitle('default');
+		$request->setDataTwig('title', 'default');
 		$sql = 'SELECT * FROM categories ORDER BY category';
 		$result = $pdo->query($sql);
 		$cats = $result->fetchAll(\PDO::FETCH_ASSOC);
-		$request->setArray('cats', $cats);
-
+		//$request->setArray('cats', $cats);
+		$request->setDataTwig('cats', $cats);
+		$request->setDataTwig('session', $_SESSION);
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			//include('./includes/login.inc.php');
 			$login_errors = array();

@@ -4,10 +4,12 @@ namespace eshop\controller;
 class Request {
 	private $get = [];
 	private $lastCommand;
-	private $title = null;
-	private $array = [];
+	//private $title = null;
+	//private $array = [];
 	private $errors = [];
 	private $variable = [];
+
+	private $datatwig = [];
 	function __construct(){
 		$this->init();
 	}
@@ -33,21 +35,21 @@ class Request {
 		return $this->lastCommand;
 	}
 
-	function getTitle(){
+/*	function getTitle(){
 		return $this->title;
 	}
 
 	function setTitle($title){
-		$this->title = $title;
-	}
+		$this->datatwig['title'] = $title;
+	}*/
 
-	function setArray($id,array $array){
+/*	function setArray($id,array $array){
 		$this->array[$id] = $array;
 	}
 
 	function getArray($id){
 		return $this->array[$id];
-	}
+	}*/
 
 	function setErrors($error){
 		$this->errors = $error;
@@ -63,5 +65,15 @@ class Request {
 
 	function getVariable($name){
 		return $this->variable[$name];
+	}
+
+	public function getDataTwig()
+	{
+		return $this->datatwig;
+	}
+
+	public function setDataTwig($variable, $data)
+	{
+		$this->datatwig[$variable] = $data;
 	}
 }
