@@ -1,9 +1,9 @@
 <?
-namespace command;
+namespace eshop\command;
 
-class Logout extends \command\Command{
-	function doExecute(\controller\Request $request){
-		$pdo = \PDO\ConnectPDO::instance();
+class Logout extends \eshop\command\Command{
+	function doExecute(\eshop\controller\Request $request){
+		$pdo = \eshop\PDO\ConnectPDO::instance();
 		$sql = 'SELECT * FROM categories ORDER BY category';
 		$result = $pdo->query($sql);
 		$cats = $result->fetchAll(\PDO::FETCH_ASSOC);

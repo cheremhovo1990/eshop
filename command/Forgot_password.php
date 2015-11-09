@@ -1,9 +1,9 @@
 <?
-namespace command;
+namespace eshop\command;
 
-class Forgot_password extends \command\Command{
-	function doExecute(\controller\Request $request){
-		$pdo = \PDO\ConnectPDO::instance();
+class Forgot_password extends \eshop\command\Command{
+	function doExecute(\eshop\controller\Request $request){
+		$pdo = \eshop\PDO\ConnectPDO::instance();
 		$request->setTitle('Forgot Your Password?');
 		$sql = 'SELECT * FROM categories ORDER BY category';
 		$result = $pdo->query($sql);

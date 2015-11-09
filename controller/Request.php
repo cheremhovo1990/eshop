@@ -1,5 +1,5 @@
 <?
-namespace controller;
+namespace eshop\controller;
 
 class Request {
 	private $get = [];
@@ -25,7 +25,7 @@ class Request {
 		return $this->get[$key] = $val;
 	}
 
-	function setCommand( \command\Command $command ){
+	function setCommand( \eshop\command\Command $command ){
 		$this->lastCommand = $command;
 	}
 

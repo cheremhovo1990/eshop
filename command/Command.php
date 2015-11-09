@@ -1,5 +1,5 @@
 <?
-namespace command;
+namespace eshop\command;
 
 abstract class Command{
 	private static $STATUS_STRINGS = [
@@ -12,7 +12,7 @@ abstract class Command{
 
 	final function __construct(){}
 
-	function execute(\controller\Request $request){
+	function execute(\eshop\controller\Request $request){
 		$this->status = $this->doExecute( $request );
 		$request->setCommand( $this );
 	}
@@ -28,7 +28,7 @@ abstract class Command{
 		throw new Exception("не знает статус");
 	}
 
-	abstract function doExecute( \controller\Request $request );
+	abstract function doExecute( \eshop\controller\Request $request );
 
 	function redirect_invalid_user($check = 'user_id', $destination = 'index.php', $protocol = 'http://'){
 		if (!isset($_SESSION[$check])) {

@@ -1,11 +1,11 @@
 <?php
-namespace view;
+namespace eshop\view;
 
 //require_once( "woo/base/Registry.php" );
 
 class ViewHelper {
     static function getRequest() {
-        return \base\ApplicationRegistry::getRequest();
+        return \eshop\base\ApplicationRegistry::getRequest();
     }
 
     public static function redirect_invalid_user($check = 'user_id', $destination = 'index.php', $protocol = 'http://')

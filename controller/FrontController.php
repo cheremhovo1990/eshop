@@ -1,5 +1,5 @@
 <?
-namespace controller;
+namespace eshop\controller;
 
 class FrontController {
 
@@ -11,12 +11,12 @@ class FrontController {
 		$instance->handleRequest();
 	}
 	function init(){
-		$applicationHelper = \controller\ApplicationHelper::instance();
+		$applicationHelper = ApplicationHelper::instance();
 		$applicationHelper->init();
 	}
 	function handleRequest(){
-		$request = \base\ApplicationRegistry::getRequest();
-		$app_c = \base\ApplicationRegistry::appController();
+		$request = \eshop\base\ApplicationRegistry::getRequest();
+		$app_c = \eshop\base\ApplicationRegistry::appController();
 		while( $cmd = $app_c->getCommand( $request ) ){
 			$cmd->execute( $request );
 		}

@@ -1,9 +1,9 @@
 <?
-namespace command;
+namespace eshop\command;
 
-class View_pdf extends \command\Command{
-	function doExecute(\controller\Request $request){
-		$pdo = \PDO\ConnectPDO::instance();
+class View_pdf extends \eshop\command\Command{
+	function doExecute(\eshop\controller\Request $request){
+		$pdo = \eshop\PDO\ConnectPDO::instance();
 		//$request->setTitle('default');
 		$sql = 'SELECT * FROM categories ORDER BY category';
 		$result = $pdo->query($sql);

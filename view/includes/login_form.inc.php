@@ -9,7 +9,7 @@ if (!isset($login_errors)) $login_errors = array();
 
 // Need the form functions script, which defines create_form_input():
 //require('./includes/form_functions.inc.php');
-use \view\ViewHelper as VH;
+use \eshop\view\ViewHelper as VH;
 ?>
 <form action="index.php" method="post" accept-charset="utf-8">
 	<fieldset>

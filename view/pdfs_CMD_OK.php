@@ -5,7 +5,7 @@
  * Date: 27.10.2015
  * Time: 9:02
  */
-use \view\ViewHelper as VH;
+use \eshop\view\ViewHelper as VH;
 
 $request = VH::getRequest();
 

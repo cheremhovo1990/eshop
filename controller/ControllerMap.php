@@ -1,5 +1,5 @@
 <?
-namespace controller;
+namespace eshop\controller;
 
 class ControllerMap {
 	private $viewMap = [];

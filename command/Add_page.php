@@ -1,10 +1,10 @@
 <?
-namespace command;
+namespace eshop\command;
 
-class Add_page extends \command\Command{
-	function doExecute(\controller\Request $request){
+class Add_page extends \eshop\command\Command{
+	function doExecute(\eshop\controller\Request $request){
 		$this->redirect_invalid_user('user_admin');
-		$pdo = \PDO\ConnectPDO::instance();
+		$pdo = \eshop\PDO\ConnectPDO::instance();
 		$request->setTitle('Add a Site Content Page');
 		$sql = 'SELECT * FROM categories ORDER BY category';
 		$result = $pdo->query($sql);

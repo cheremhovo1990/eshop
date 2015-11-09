@@ -1,5 +1,5 @@
 <?
-namespace controller;
+namespace eshop\controller;
 
 class AppController{
 	private static $base_cmd = null;
@@ -7,18 +7,18 @@ class AppController{
 	private $controllerMap;
 	private $invoked = [];
 
-	function __construct(\controller\ControllerMap $map){
+	function __construct(\eshop\controller\ControllerMap $map){
 		$this->controllerMap = $map;
-		self::$base_cmd = new \ReflectionClass('\command\Command');
-		self::$default_cmd = new \command\DefaultCommand();
+		self::$base_cmd = new \ReflectionClass('\eshop\command\Command');
+		self::$default_cmd = new \eshop\command\DefaultCommand();
 	}
 
-	function getView(\controller\Request $req){
+	function getView(\eshop\controller\Request $req){
 		$view = $this->getResource( $req, 'View' );
 		return $view;
 	}
 
-	private function getForward( \controller\Request $req ){
+	private function getForward( \eshop\controller\Request $req ){
 		$forward = $this->getResource( $req, 'Forward' );
 		if( $forward ){
 			$req->setGet('cmd', $forward);
@@ -26,7 +26,7 @@ class AppController{
 		return $forward;
 	}
 
-	private function getResource(\controller\Request $req, $res){
+	private function getResource(\eshop\controller\Request $req, $res){
 		$cmd_str = $req->getGet('cmd');
 		$previous = $req->getLastCommand();
 		$status = $previous->getStatus();
@@ -45,7 +45,7 @@ class AppController{
 		return $resource;
 	}
 
-	function getCommand( \controller\Request $req ){
+	function getCommand( \eshop\controller\Request $req ){
 		$previous = $req->getLastCommand();
 		if( is_null($previous) ){
 			$cmd = $req->getGet('cmd');
@@ -72,7 +72,7 @@ class AppController{
 	function resolveCommand($cmd){
 		$classroot = $this->controllerMap->getClassRoot($cmd);
 		$filepath = BASE_URI . "command/" . ucfirst($classroot) . ".php";
-		$classname = "\\command\\$classroot";
+		$classname = "\\eshop\\command\\$classroot";
 		if ( file_exists($filepath) ){
 			require_once($filepath);
 			if ( class_exists($classname) ){

@@ -1,5 +1,5 @@
 <?php
-namespace PDO;
+namespace eshop\PDO;
 
 /**
  * Created by PhpStorm.
@@ -15,9 +15,9 @@ class ConnectPDO {
      */
     public function __construct()
     {
-        $dsn = \base\ApplicationRegistry::getDSN();
-        $user = \base\ApplicationRegistry::getUser();
-        $password = \base\ApplicationRegistry::getPassword();
+        $dsn = \eshop\base\ApplicationRegistry::getDSN();
+        $user = \eshop\base\ApplicationRegistry::getUser();
+        $password = \eshop\base\ApplicationRegistry::getPassword();
         $this->db = new \PDO($dsn, $user, $password,
             [
                 \PDO::MYSQL_ATTR_INIT_COMMAND => 'SET NAMES utf8'

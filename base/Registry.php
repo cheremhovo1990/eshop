@@ -1,5 +1,5 @@
 <?
-namespace base;
+namespace eshop\base;
 
 abstract class Registry {
 	abstract protected function set($key, $val);

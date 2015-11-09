@@ -1,7 +1,7 @@
 <?
-namespace base;
+namespace eshop\base;
 
-class ApplicationRegistry extends \base\Registry{
+class ApplicationRegistry extends \eshop\base\Registry{
 
 	private $value = [];
 	private $request = null;
@@ -62,7 +62,7 @@ class ApplicationRegistry extends \base\Registry{
 	static function getRequest(){
 		$inst = self::instance();
 		if (is_null($inst->request)){
-			$inst->request = new \controller\Request;
+			$inst->request = new \eshop\controller\Request;
 		}
 		return $inst->request;
 	}
@@ -71,7 +71,7 @@ class ApplicationRegistry extends \base\Registry{
 		$inst = self::instance();
 		if (is_null($inst->appController)){
 			$cmap = self::getControllerMap();
-			$inst->appController = new \controller\AppController($cmap);
+			$inst->appController = new \eshop\controller\AppController($cmap);
 		}
 		return $inst->appController;
 	}

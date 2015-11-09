@@ -1,5 +1,5 @@
 <?
-namespace controller;
+namespace eshop\controller;
 
 class ApplicationHelper {
 
@@ -27,13 +27,13 @@ class ApplicationHelper {
 		$this->configPDO($options);
 
 
-		$map = new \controller\ControllerMap();
+		$map = new \eshop\controller\ControllerMap();
 		foreach ($options->control->view as $default_view) {
 			$stat_str = trim($default_view['status']);
 			if (empty($stat_str)){
 				$stat_str = "CMD_DEFAULT";
 			}
-			$status = \command\Command::statuses($stat_str);
+			$status = \eshop\command\Command::statuses($stat_str);
 			$map->addView( 'default', $status, (string)$default_view );
 		}
 		foreach ( $options->control->command as $command_view ) {
@@ -53,7 +53,7 @@ class ApplicationHelper {
 					$view = trim((string)$command_view_status->view);
 					$forward = trim((string)$command_view_status->forward);
 					$stat_str = trim($command_view_status['value']);
-					$status = \command\Command::statuses($stat_str);
+					$status = \eshop\command\Command::statuses($stat_str);
 					if ($view){
 						$map->addView($command, $status, $view);
 					}
@@ -63,7 +63,7 @@ class ApplicationHelper {
 				}
 			}
 		}
-		\base\ApplicationRegistry::setControllerMap($map);
+		\eshop\base\ApplicationRegistry::setControllerMap($map);
 	}
 
 	private function ensure($expr, $message){
@@ -81,12 +81,12 @@ class ApplicationHelper {
 		// настройки базы PDO($dsn, $user, $password)
 		$dsn = (string)$options->dsn;
 		$this->ensure($dsn, 'Не найден dsn');
-		\base\ApplicationRegistry::setDSN($dsn);
+		\eshop\base\ApplicationRegistry::setDSN($dsn);
 		$user = (string)$options->user;
 		$this->ensure($user, 'Не задан пользователь');
-		\base\ApplicationRegistry::setUser($user);
+		\eshop\base\ApplicationRegistry::setUser($user);
 		$password = (string)$options->password;
-		\base\ApplicationRegistry::setPassword($password);
+		\eshop\base\ApplicationRegistry::setPassword($password);
 		// конец настройки базы
 	}
 }
