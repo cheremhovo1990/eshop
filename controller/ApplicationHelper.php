@@ -95,7 +95,11 @@ class ApplicationHelper {
 		static $twig = null;
 		if(is_null($twig)){
 			// объевление Twig
-			$twigloader = new \Twig_Loader_Filesystem( BASE_URI . 'view/templates');
+			$twigloader = new \Twig_Loader_Filesystem(
+				[
+					BASE_URI . 'view/templates',
+					BASE_URI . 'view',
+				]);
 			$twig = new \Twig_Environment($twigloader);
 		}
 		return $twig;

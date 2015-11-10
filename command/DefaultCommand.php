@@ -5,7 +5,7 @@ class DefaultCommand extends \eshop\command\Command{
 	function doExecute(\eshop\controller\Request $request){
 		$pdo = \eshop\PDO\ConnectPDO::instance();
 		//$request->setTitle('default');
-		$request->setDataTwig('title', 'default');
+		//$request->setDataTwig('title', 'default');
 		$sql = 'SELECT * FROM categories ORDER BY category';
 		$result = $pdo->query($sql);
 		$cats = $result->fetchAll(\PDO::FETCH_ASSOC);
