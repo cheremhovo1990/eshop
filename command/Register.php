@@ -4,11 +4,13 @@ namespace eshop\command;
 class Register extends \eshop\command\Command{
 	function doExecute(\eshop\controller\Request $request){
 		$pdo = \eshop\PDO\ConnectPDO::instance();
-		$request->setTitle('Register');
+		//$request->setTitle('Register');
+		$request->setDataTwig('title', 'Register');
 		$sql = 'SELECT * FROM categories ORDER BY category';
 		$result = $pdo->query($sql);
 		$cats = $result->fetchAll(\PDO::FETCH_ASSOC);
-		$request->setArray('cats', $cats);
+		//$request->setArray('cats', $cats);
+		$request->setDataTwig('cats', $cats);
 		$reg_errors = array();
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			// Check for a first name:
@@ -81,7 +83,9 @@ class Register extends \eshop\command\Command{
 						$uid = $pdo->lastInsertId();
 //				$_SESSION['reg_user_id']  = $uid;
 
-						$request->setVariable('email', $e);
+						//$request->setVariable('email', $e);
+
+						$request->setDataTwig('email', trim($e, '\''));
 						return self::statuses('CMD_OK');
 
 					} else { // If it did not run OK.
@@ -114,7 +118,9 @@ class Register extends \eshop\command\Command{
 
 			} // End of empty($reg_errors) IF.
 		}
-		$request->setErrors($reg_errors);
+		$request->setDataTwig('post', $request->getPost());
+		$request->setDataTwig('reg_errors', $reg_errors);
+		//$request->setErrors($reg_errors);
 		return self::statuses('CMD_DEFAULT');
 	}
 }

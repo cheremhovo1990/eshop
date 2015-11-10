@@ -12,7 +12,7 @@
         {% if type == 'text' or type == 'password' or type == 'email' %}
             <input type="{{ type }}" name="{{ name }}" id="{{ name }}" class="form-control"
                 {% if not value is empty %}
-                    value=" {{ value }} "
+                    value="{{ value }}"
                 {% endif %}
                 {% if not options is empty and options is iterable %}
                     {% for k,v in options %}
@@ -32,7 +32,7 @@
                     {% endfor %}
                 {% endif %}
                 {% if not value is empty %}
-                   value=" {{ value }} "
+                   value=" {{value}} "
                 {% endif %}
             </textarea>
         {% endif %}

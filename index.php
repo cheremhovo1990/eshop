@@ -8,7 +8,7 @@ session_start();
 require_once __DIR__ . '/vendor/autoload.php';
 require_once 'psr4autoloader.php';
 
-// îáúåâëåíèå çàãðóç÷èêà
+// Ð¾Ð±ÑŠÐµÐ²Ð»ÐµÐ½Ð¸Ðµ Ð·Ð°Ð³Ñ€ÑƒÐ·Ñ‡Ð¸ÐºÐ°
 $loader = new \Psr4AutoloaderClass;
 $loader->register();
 $loader->addNamespace('eshop', __DIR__);

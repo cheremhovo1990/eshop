@@ -101,6 +101,7 @@ class ApplicationHelper {
 					BASE_URI . 'view',
 				]);
 			$twig = new \Twig_Environment($twigloader);
+			$twig->addGlobal('BASE_URL', BASE_URL);
 		}
 		return $twig;
 	}
