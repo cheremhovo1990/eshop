@@ -11,6 +11,7 @@ class Register extends \eshop\command\Command{
 		$cats = $result->fetchAll(\PDO::FETCH_ASSOC);
 		//$request->setArray('cats', $cats);
 		$request->setDataTwig('cats', $cats);
+		$request->setDataTwig('session', $_SESSION);
 		$reg_errors = array();
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			// Check for a first name:
