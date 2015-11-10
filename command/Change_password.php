@@ -4,11 +4,13 @@ namespace eshop\command;
 class Change_password extends \eshop\command\Command{
 	function doExecute(\eshop\controller\Request $request){
 		$pdo = \eshop\PDO\ConnectPDO::instance();
-		$request->setTitle('Change Your Password');
+		//$request->setTitle('Change Your Password');
+		$request->setDataTwig('title', 'Change Your Password');
 		$sql = 'SELECT * FROM categories ORDER BY category';
 		$result = $pdo->query($sql);
 		$cats = $result->fetchAll(\PDO::FETCH_ASSOC);
-		$request->setArray('cats', $cats);
+		//$request->setArray('cats', $cats);
+		$request->setDataTwig('cats', $cats);
 		$pass_errors = array();
 
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -67,8 +69,11 @@ class Change_password extends \eshop\command\Command{
 
 		} // End of the form submission conditional.
 
-
-		$request->setErrors($pass_errors);
+		$request->setDataTwig('post', $request->getPost());
+		$request->setDataTwig('pass_errors', $pass_errors);
+		//$request->setErrors($login_errors);
+		$request->setDataTwig('session', $_SESSION);
+		//$request->setErrors($pass_errors);
 		return self::statuses('CMD_DEFAULT');
 	}
 }
