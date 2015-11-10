@@ -7,8 +7,8 @@ class Logout extends \eshop\command\Command{
 		$sql = 'SELECT * FROM categories ORDER BY category';
 		$result = $pdo->query($sql);
 		$cats = $result->fetchAll(\PDO::FETCH_ASSOC);
-		$request->setArray('cats', $cats);
-
+		//$request->setArray('cats', $cats);
+		$request->setDataTwig('cats', $cats);
 		$this->redirect_invalid_user();
 
 		// Destroy the session:
@@ -16,8 +16,9 @@ class Logout extends \eshop\command\Command{
 		session_destroy(); // Destroy the session itself.
 		setcookie (session_name(), '', time()-300); // Destroy the cookie.
 
-		$request->setTitle('Logout');
-
+		//$request->setTitle('Logout');
+		$request->setDataTwig('title', 'Logout');
+		$request->setDataTwig('session', $_SESSION);
 		return self::statuses('CMD_DEFAULT');
 	}
 }
