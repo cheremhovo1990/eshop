@@ -1,0 +1,40 @@
+{% macro create_form_input(name, type, post, label, errors, options) %}
+
+    {% set value = {} %}
+    {% if attribute(post, name) is defined %}
+
+        {% set value = attribute(post, name) %}
+    {% endif %}
+    <div class="form-group{% if attribute(errors, name) is defined %} has-error{% endif %}">
+        {% if not label is empty %}
+             <label for="{{ name }}" class="control-label">{{ label }}</label>
+        {% endif %}
+        {% if type == 'text' or type == 'password' or type == 'email' %}
+            <input type="{{ type }}" name="{{ name }}" id="{{ name }}" class="form-control"
+                {% if not value is empty %}
+                    value=" {{ value }} "
+                {% endif %}
+                {% if not options is empty and options is iterable %}
+                    {% for k,v in options %}
+                        {{ k }} ="{{ v }}"
+                    {% endfor %}
+                {% endif %}
+            >
+            {% if attribute(errors, name) is defined  %}
+                <span class="help-block">{{ attribute(errors, name) }}</span>
+            {% endif %}
+        {% elseif type == 'textarea'  %}
+            {% if attribute(errors, name) %}<span class="help-block">{{ attribute(errors, name) }}</span>{% endif %}
+            <textarea name="{{ name }}" id="{{ name }}" class="form-control">
+                {% if not options is empty and options is iterable %}
+                    {% for k,v in options %}
+                        {{ k }} ="{{ v }}"
+                    {% endfor %}
+                {% endif %}
+                {% if not value is empty %}
+                   value=" {{ value }} "
+                {% endif %}
+            </textarea>
+        {% endif %}
+    </div>
+{% endmacro %}

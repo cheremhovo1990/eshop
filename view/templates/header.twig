@@ -11,13 +11,6 @@
 	{% else %}
 		'Knowledge is Power: And It Pays to Know';
 	{% endif %}
-{#<?php // Use a default page title if one wasn't provided...
-	if (isset($title)) {
-			echo $title;
-	} else {
-			echo 'Knowledge is Power: And It Pays to Know';
-	}
-?>#}
 
 	</title>
 
@@ -76,32 +69,6 @@
 						</li>
 					{% endif %}
 				{% endif %}
-{#if (isset($_SESSION['user_id'])) {
-
-	// Show basic user options:
-	// Includes references to some bonus material discussed in Part Four!
-	echo '<li class="dropdown">
-	<a href="#" class="dropdown-toggle" data-toggle="dropdown">Account <b class="caret"></b></a>
-		<ul class="dropdown-menu">
-			<li><a href="?cmd=logout">Logout</a></li>
-			<li><a href="?cmd=change_password">Change Password</a></li>
-		</ul>
-	</li>';
-
-	// Show admin options, if appropriate:
-	if (isset($_SESSION['user_admin'])) {
-		echo '<li class="dropdown">
-		<a href="#" class="dropdown-toggle" data-toggle="dropdown">Admin <b class="caret"></b></a>
-			<ul class="dropdown-menu">
-				<li><a href="?cmd=add_page">Add Page</a></li>
-				<li><a href="?cmd=add_pdf">Add PDF</a></li>
-			</ul>
-		</li>';		
-	}
-	
-} // user_id not set.
-
-?>#}
             </ul>
           </div><!--/.nav-collapse -->
         </div><!--/container-->
@@ -123,12 +90,9 @@
 			  <a href="?cmd=pdfs" class="list-group-item" title="PDFs">PDF Guides
 			  </a>
 			</div><!--/list-group-->
-
-<?php // Should we show the login form?
-if (!isset($_SESSION['user_id'])) {
-	require('login_form.inc.php');
-}
-?>
+			{% if not session.user_id is defined %}
+				{% include 'login_form.inc.twig' %}
+			{% endif %}
 			</div><!--/col-3-->
 		  
 			

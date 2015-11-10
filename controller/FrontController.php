@@ -17,10 +17,12 @@ class FrontController {
 	function handleRequest(){
 		$request = \eshop\base\ApplicationRegistry::getRequest();
 		$app_c = \eshop\base\ApplicationRegistry::appController();
-		$twig = ApplicationHelper::getTwig();
+
 		while( $cmd = $app_c->getCommand( $request ) ){
 			$cmd->execute( $request );
 		}
+		// экзмпляр класса twig
+		$twig = ApplicationHelper::getTwig();
 		$this->invoked($app_c->getView($request), $twig, $request->getDatatwig());
 	}
 	function invoked($target, $twig, $datatwig){

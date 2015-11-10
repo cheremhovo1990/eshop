@@ -12,9 +12,11 @@ class DefaultCommand extends \eshop\command\Command{
 		//$request->setArray('cats', $cats);
 		$request->setDataTwig('cats', $cats);
 		$request->setDataTwig('session', $_SESSION);
+
+		$login_errors = array();
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 			//include('./includes/login.inc.php');
-			$login_errors = array();
+
 			// Validate the email address:
 			if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)) {
 				$e = $pdo->quote($_POST['email']);
@@ -68,8 +70,9 @@ class DefaultCommand extends \eshop\command\Command{
 
 			} // End of $login_errors IF.
 		}
-
-		$request->setErrors($login_errors);
+		$request->setDataTwig('post', $request->getPost());
+		$request->setDataTwig('login_errors', $login_errors);
+		//$request->setErrors($login_errors);
 		return self::statuses('CMD_DEFAULT');
 	}
 }

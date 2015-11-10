@@ -3,10 +3,11 @@ namespace eshop\controller;
 
 class Request {
 	private $get = [];
+	private $post = [];
 	private $lastCommand;
 	//private $title = null;
 	//private $array = [];
-	private $errors = [];
+	//private $errors = [];
 	private $variable = [];
 
 	private $datatwig = [];
@@ -17,6 +18,9 @@ class Request {
 		if ($_SERVER['REQUEST_METHOD'] == 'GET' || $_SERVER['REQUEST_METHOD'] == 'POST'){
 			$this->get = $_GET;
 		}
+		if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+			$this->post = $_POST;
+		}
 	}
 
 	function getGet($val){
@@ -25,6 +29,10 @@ class Request {
 
 	function setGet($key, $val){
 		return $this->get[$key] = $val;
+	}
+
+	function getPost(){
+		return $this->post;
 	}
 
 	function setCommand( \eshop\command\Command $command ){
@@ -51,13 +59,13 @@ class Request {
 		return $this->array[$id];
 	}*/
 
-	function setErrors($error){
+/*	function setErrors($error){
 		$this->errors = $error;
 	}
 
 	function getErrors(){
 		return $this->errors;
-	}
+	}*/
 
 	function setVariable($name, $val){
 		$this->variable[$name] = $val;
