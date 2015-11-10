@@ -17,6 +17,7 @@ class Logout extends \eshop\command\Command{
 		setcookie (session_name(), '', time()-300); // Destroy the cookie.
 
 		//$request->setTitle('Logout');
+		$request->setDataTwig('post', $request->getPost());
 		$request->setDataTwig('title', 'Logout');
 		$request->setDataTwig('session', $_SESSION);
 		return self::statuses('CMD_DEFAULT');

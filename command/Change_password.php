@@ -11,6 +11,7 @@ class Change_password extends \eshop\command\Command{
 		$cats = $result->fetchAll(\PDO::FETCH_ASSOC);
 		//$request->setArray('cats', $cats);
 		$request->setDataTwig('cats', $cats);
+		$request->setDataTwig('post', $request->getPost());
 		$pass_errors = array();
 
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -69,7 +70,7 @@ class Change_password extends \eshop\command\Command{
 
 		} // End of the form submission conditional.
 
-		$request->setDataTwig('post', $request->getPost());
+
 		$request->setDataTwig('pass_errors', $pass_errors);
 		//$request->setErrors($login_errors);
 		$request->setDataTwig('session', $_SESSION);

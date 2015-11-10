@@ -11,7 +11,7 @@ class DefaultCommand extends \eshop\command\Command{
 		$cats = $result->fetchAll(\PDO::FETCH_ASSOC);
 		//$request->setArray('cats', $cats);
 		$request->setDataTwig('cats', $cats);
-
+		$request->setDataTwig('post', $request->getPost());
 
 		$login_errors = array();
 		if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -70,7 +70,7 @@ class DefaultCommand extends \eshop\command\Command{
 
 			} // End of $login_errors IF.
 		}
-		$request->setDataTwig('post', $request->getPost());
+
 		$request->setDataTwig('login_errors', $login_errors);
 		//$request->setErrors($login_errors);
 		$request->setDataTwig('session', $_SESSION);

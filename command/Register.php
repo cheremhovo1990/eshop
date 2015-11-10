@@ -11,7 +11,7 @@ class Register extends \eshop\command\Command{
 		$cats = $result->fetchAll(\PDO::FETCH_ASSOC);
 		//$request->setArray('cats', $cats);
 		$request->setDataTwig('cats', $cats);
-
+		$request->setDataTwig('post', $request->getPost());
 		$reg_errors = array();
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 			// Check for a first name:
@@ -120,7 +120,7 @@ class Register extends \eshop\command\Command{
 
 			} // End of empty($reg_errors) IF.
 		}
-		$request->setDataTwig('post', $request->getPost());
+
 		$request->setDataTwig('reg_errors', $reg_errors);
 		//$request->setErrors($reg_errors);
 		$request->setDataTwig('session', $_SESSION);
