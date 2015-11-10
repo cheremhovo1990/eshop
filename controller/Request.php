@@ -67,13 +67,13 @@ class Request {
 		return $this->errors;
 	}*/
 
-	function setVariable($name, $val){
+/*	function setVariable($name, $val){
 		$this->variable[$name] = $val;
 	}
 
 	function getVariable($name){
 		return $this->variable[$name];
-	}
+	}*/
 
 	public function getDataTwig()
 	{
