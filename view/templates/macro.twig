@@ -25,16 +25,13 @@
             {% endif %}
         {% elseif type == 'textarea'  %}
             {% if attribute(errors, name) %}<span class="help-block">{{ attribute(errors, name) }}</span>{% endif %}
-            <textarea name="{{ name }}" id="{{ name }}" class="form-control">
+            <textarea name="{{ name }}" id="{{ name }}" class="form-control"
                 {% if not options is empty and options is iterable %}
                     {% for k,v in options %}
                         {{ k }} ="{{ v }}"
                     {% endfor %}
                 {% endif %}
-                {% if not value is empty %}
-                   value=" {{value}} "
-                {% endif %}
-            </textarea>
+            >{% if not value is empty %}{{value}}{% endif %}</textarea>
         {% endif %}
     </div>
 {% endmacro %}

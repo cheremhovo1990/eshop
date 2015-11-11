@@ -1,0 +1,57 @@
+{% extends 'main.twig' %}
+
+{% block content %}
+    {% import 'macro.twig' as VH  %}
+    <h1>Add a Site Content Page</h1>
+    <form action="?cmd=add_page" method="post" accept-charset="utf-8">
+
+        <fieldset><legend>Fill out the form to add a page of content:</legend>
+            <div class="form-group">
+                <label for="status" class="control-label">Status</label>
+                <select name="status" class="form-control"><option value="draft">Draft</option>
+                    <option value="live">Live</option>
+                </select></div>
+
+                {{ VH.create_form_input('title', 'text', post,'Title', add_page_errors) }}
+
+                <div class="form-group {% if add_page_errors.category is defined  %}has-error{% endif %}">
+                    <label for="category" class="control-label">Category</label>
+                    <select name="category" class="form-control" multiple size="5">
+                        {% for row in cats2 %}
+                            <option value="{{ row['0'] }}"{% if post.category is defined and post.category == row.0 %} selected="selected"{% endif %}>{{ row.1 }}</option>
+                        {% endfor %}
+                    </select>
+                    {% if add_page_errors.category is defined %}
+                        <span class="help-block">{{ add_page_errors.category }}</span>
+                    {% endif %}
+
+                </div>
+            {{ VH.create_form_input('description', 'textarea', post, 'Description', add_page_errors) }}
+            {{ VH.create_form_input('content', 'textarea', post, 'Content', add_page_errors) }}
+
+            <input type="submit" name="submit_button" value="Add This Page" id="submit_button" class="btn btn-default" />
+
+        </fieldset>
+
+    </form>
+
+    <script type="text/javascript" src="js/tinymce/tinymce.min.js"></script>
+    <script type="text/javascript">
+        tinyMCE.init({
+            // General options
+            selector : "#content",
+            width : 800,
+            height : 400,
+            browser_spellcheck : true,
+
+            plugins: "paste,searchreplace,fullscreen,hr,link,anchor,image,charmap,media,autoresize,autosave,contextmenu,wordcount",
+
+            toolbar1: "cut,copy,paste,|,undo,redo,removeformat,|hr,|,link,unlink,anchor,image,|,charmap,media,|,search,replace,|,fullscreen",
+            toolbar2:	"bold,italic,underline,strikethrough,|,alignleft,aligncenter,alignright,alignjustify,|,formatselect,|,bullist,numlist,|,outdent,indent,blockquote,",
+
+            // Example content CSS (should be your site CSS)
+            content_css : "/ex1/html/css/bootstrap.min.css",
+
+        });
+    </script>
+{% endblock %}

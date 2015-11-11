@@ -5,12 +5,18 @@ class Add_page extends \eshop\command\Command{
 	function doExecute(\eshop\controller\Request $request){
 		$this->redirect_invalid_user('user_admin');
 		$pdo = \eshop\PDO\ConnectPDO::instance();
-		$request->setTitle('Add a Site Content Page');
+		//$request->setTitle('Add a Site Content Page');
+		$request->setDataTwig('title', 'Add a Site Content Page');
 		$sql = 'SELECT * FROM categories ORDER BY category';
 		$result = $pdo->query($sql);
 		$cats = $result->fetchAll(\PDO::FETCH_ASSOC);
-		$request->setArray('cats', $cats);
+		//$request->setArray('cats', $cats);
+		$request->setDataTwig('cats', $cats);
+
+		$request->setDataTwig('post', $request->getPost());
+
 		$add_page_errors = array();
+
 
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
@@ -70,8 +76,11 @@ class Add_page extends \eshop\command\Command{
 		$q = "SELECT id, category FROM categories ORDER BY category ASC";
 		$r = $pdo->query($q);
 		$cats2 = $r->fetchAll(\PDO::FETCH_NUM);
-		$request->setArray('cats2', $cats2);
-		$request->setErrors($add_page_errors);
+		//$request->setArray('cats2', $cats2);
+		$request->setDataTwig('cats2', $cats2);
+		//$request->setErrors($add_page_errors);
+		$request->setDataTwig('add_page_errors', $add_page_errors);
+		$request->setDataTwig('session', $_SESSION);
 		return self::statuses('CMD_DEFAULT');
 	}
 }
