@@ -5,12 +5,14 @@ class Add_pdf extends \eshop\command\Command{
 	function doExecute(\eshop\controller\Request $request){
 		$this->redirect_invalid_user('user_admin');
 		$pdo = \eshop\PDO\ConnectPDO::instance();
-		$request->setTitle('user_admin');
+		//$request->setTitle('user_admin');
+		$request->setDataTwig('title', 'user_admin');
 		$sql = 'SELECT * FROM categories ORDER BY category';
 		$result = $pdo->query($sql);
 		$cats = $result->fetchAll(\PDO::FETCH_ASSOC);
-		$request->setArray('cats', $cats);
-
+		//$request->setArray('cats', $cats);
+		$request->setDataTwig('cats', $cats);
+		$request->setDataTwig('post', $request->getPost());
 		$add_pdf_errors = array();
 
 		if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -74,7 +76,7 @@ class Add_pdf extends \eshop\command\Command{
 						// Print a message:
 
 						//echo '<div class="alert alert-success"><h3>The file has been uploaded!</h3></div>';
-						$request->setVariable('string', '<div class="alert alert-success"><h3>The file has been uploaded!</h3></div>');
+						$request->setDataTwig('string', '<div class="alert alert-success"><h3>The file has been uploaded!</h3></div>');
 					} else {
 						trigger_error('The file could not be moved.');
 						unlink ($file['tmp_name']);
@@ -135,6 +137,7 @@ class Add_pdf extends \eshop\command\Command{
 
 					// Clear $file and $_SESSION['pdf']:
 					unset($file, $_SESSION['pdf']);
+					$request->setDataTwig('session', $_SESSION);
 					return self::statuses('CMD_OK');
 
 				} else { // If it did not run OK.
@@ -147,8 +150,9 @@ class Add_pdf extends \eshop\command\Command{
 		} else { // Clear out the session on a GET request:
 			unset($_SESSION['pdf']);
 		} // End of the submission IF.
-
-		$request->setErrors($add_pdf_errors);
+		$request->setDataTwig('add_pdf_errors', $add_pdf_errors);
+		$request->setDataTwig('session', $_SESSION);
+		//$request->setErrors($add_pdf_errors);
 		return self::statuses('CMD_DEFAULT');
 	}
 }

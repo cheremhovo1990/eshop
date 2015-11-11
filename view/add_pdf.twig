@@ -1,0 +1,35 @@
+{% extends 'main.twig' %}
+
+{% block content %}
+    {% import 'macro.twig' as VH %}
+    <h1>Add a PDF</h1>
+    <form enctype="multipart/form-data" action="?cmd=add_pdf" method="post" accept-charset="utf-8">
+
+        <input type="hidden" name="MAX_FILE_SIZE" value="5242880">
+
+        <fieldset><legend>Fill out the form to add a PDF to the site:</legend>
+            {{ VH.create_form_input('title', 'text', post, 'Title', add_pdf_errors) }}
+            {{ VH.create_form_input('description', 'textarea', post, 'Description', add_pdf_errors) }}
+            <div class="form-group{%
+                if add_pdf_errors.pdf is defined
+            %} has-error{%
+                elseif session.pdf is defined
+            %} has-success{%
+                endif
+            %}">
+                <label for="pdf" class="control-label">PDF</label><input type="file" name="pdf" id="pdf">
+                {% if add_pdf_errors.pdf is defined %}
+                    <span class="help-block">{{ add_pdf_errors.pdf }}</span>
+                {% else %}
+                    {% if session.pdf is defined %}
+                        <p class="lead">Currently: {{ session.pdf.file_name }}</p>
+                    {% endif %}
+                {% endif %}
+                <span class="help-block">PDF only, 5MB Limit</span>
+            </div>
+            <input type="submit" name="submit_button" value="Add This PDF" id="submit_button" class="btn btn-default" />
+
+        </fieldset>
+
+    </form>
+{% endblock %}
