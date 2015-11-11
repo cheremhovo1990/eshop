@@ -29,6 +29,9 @@
 		</command>
 		<command name="add_page">
 			<view>add_page</view>
+			<status value="CMD_OK">
+				<view>add_page_CMD_OK</view>
+			</status>
 		</command>
 		<command name="category">
 			<view>category</view>]

@@ -58,11 +58,12 @@ class Add_page extends \eshop\command\Command{
 				if ($r === 1) { // If it ran OK.
 
 					// Print a message:
-					echo '<div class="alert alert-success"><h3>The page has been added!</h3></div>';
+					//echo '<div class="alert alert-success"><h3>The page has been added!</h3></div>';
 
 					// Clear $_POST:
 					$_POST = array();
-
+					$request->setDataTwig('session', $_SESSION);
+					return self::statuses('CMD_OK');
 					// Send an email to the administrator to let them know new content was added?
 
 				} else { // If it did not run OK.
