@@ -1,0 +1,17 @@
+{% extends 'main.twig' %}
+{% block content %}
+    <h1>{{ title }}</h1>
+    {% if session.user_id is defined and not session.user_not_expired is defined %}
+        <div class="alert">
+            <h4>Expired Account</h4>
+            Thank you for your interest in this content. Unfortunately your account has expired. Please
+            <a href="renew.php">renew your account</a> in order to access site content.
+        </div>
+    {% elseif not session.user_id %}
+        <div class="alert">
+            Thank you for your interest in this content.
+            You must be logged in as a registered user to view site content.
+        </div>
+    {% endif %}
+    <p>There are currently no pages of content associated with this category. Please check back again!</p>
+{% endblock %}

@@ -8,7 +8,9 @@ class Category extends \eshop\command\Command{
 		$sql = 'SELECT * FROM categories ORDER BY category';
 		$result = $pdo->query($sql);
 		$cats = $result->fetchAll(\PDO::FETCH_ASSOC);
-		$request->setArray('cats', $cats);
+		//$request->setArray('cats', $cats);
+		$request->setDataTwig('cats', $cats);
+		$request->setDataTwig('post', $request->getPost());
 
 		if (filter_var($_GET['id'], FILTER_VALIDATE_INT, array('min_range' => 1))) {
 			$cat_id = $_GET['id'];
@@ -19,17 +21,16 @@ class Category extends \eshop\command\Command{
 			if (count($row = $r->fetchAll(\PDO::FETCH_NUM)) !== 1) { // Problem!
 				$page_title = 'Error!';
 				//include('./includes/header.html');
-				$request->setTitle($page_title);
+				//$request->setTitle($page_title);
+				$request->setDataTwig('title', $page_title);
+				$request->setDataTwig('session', $_SESSION);
 				return self::statuses('CMD_ERROR');
-				//echo '<div class="alert alert-danger">This page has been accessed in error.</div>';
-				//include('./includes/footer.html');
-				exit();
 			}
 
 			// Fetch the category title and use it as the page title:
 			list($page_title) = $row[0];
-			$request->setTitle($page_title);
-
+			//$request->setTitle($page_title);
+			$request->setDataTwig('title', $page_title);
 
 
 			//include('./includes/header.html');
@@ -48,7 +49,9 @@ class Category extends \eshop\command\Command{
 			$r = $pdo->query($q);
 
 			if (count($row = $r->fetchAll(\PDO::FETCH_ASSOC)) > 0) { // Pages available!
-				$request->setArray('content_pages', $row);
+				//$request->setArray('content_pages', $row);
+				$request->setDataTwig('content_pages', $row);
+				$request->setDataTwig('session', $_SESSION);
 				return self::statuses('CMD_DEFAULT');
 				// Fetch each record:
 				/*while ($row = mysqli_fetch_array($r, MYSQLI_ASSOC)) {
@@ -59,6 +62,7 @@ class Category extends \eshop\command\Command{
 				} // End of WHILE loop.*/
 
 			} else { // No pages available.
+				$request->setDataTwig('session', $_SESSION);
 				return self::statuses('CMD_OK');
 				//echo '<p>There are currently no pages of content associated with this category. Please check back again!</p>';
 			}
@@ -66,7 +70,9 @@ class Category extends \eshop\command\Command{
 		} else { // No valid ID.
 			$page_title = 'Error!';
 			//include('./includes/header.html');
-			$request->setTitle($page_title);
+			//$request->setTitle($page_title);
+			$request->setDataTwig('title', $page_title);
+			$request->setDataTwig('session', $_SESSION);
 			return self::statuses('CMD_ERROR');
 			//echo '<div class="alert alert-danger">This page has been accessed in error.</div>';
 		} // End of primary IF.
