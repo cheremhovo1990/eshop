@@ -1,0 +1,17 @@
+{% extends 'main.twig' %}
+
+{% block content %}
+    <h1>PDF Guides</h1>
+    {{ string }}
+    {% for row in pdfs %}
+        <div>
+            <h4>
+                <a href="?cmd=view_pdf&id={{ row['tmp_name'] }}">
+                    {{ row['title'] }}
+                </a>
+                ({{ row['size'] }}kb)
+            </h4>
+            <p>{{ row['description'] }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
