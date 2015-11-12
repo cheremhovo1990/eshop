@@ -8,7 +8,9 @@ class View_pdf extends \eshop\command\Command{
 		$sql = 'SELECT * FROM categories ORDER BY category';
 		$result = $pdo->query($sql);
 		$cats = $result->fetchAll(\PDO::FETCH_ASSOC);
-		$request->setArray('cats', $cats);
+		//$request->setArray('cats', $cats);
+		$request->setDataTwig('cats', $cats);
+		$request->setDataTwig('post', $request->getPost());
 
 		$valid = false;
 		if (isset($_GET['id']) && (strlen($_GET['id']) === 63) && (substr($_GET['id'], 0, 1) !== '.') ) {
@@ -52,7 +54,8 @@ class View_pdf extends \eshop\command\Command{
 
 						// Display an HTML page instead:
 						//$page_title = $row['title'];
-						$request->setArray('pdf', $row);
+						//$request->setArray('pdf', $row);
+						$request->setDataTwig('pdf', $row);
 						//include('./includes/header.html');
 						//echo "<h1>$page_title</h1>";
 
@@ -66,9 +69,11 @@ class View_pdf extends \eshop\command\Command{
 							//echo '<div class="alert">Thank you for your interest in this content. You must be logged in as a registered user to access this file.</div>';
 						}
 
-						$request->setVariable('string', $string);
+						//$request->setVariable('string', $string);
+						$request->setDataTwig('string', $string);
 						// Complete the page:
 						//echo '<div>' . htmlspecialchars($row['description']) . '</div>';
+						$request->setDataTwig('session', $_SESSION);
 						return self::statuses('CMD_DEFAULT');
 						//include('./includes/footer.html');
 
@@ -82,8 +87,10 @@ class View_pdf extends \eshop\command\Command{
 
 		if (!$valid) {
 			//$page_title = 'Error!';
-			$request->setTitle('Error!');
+			//$request->setTitle('Error!');
 			//include('./includes/header.html');
+			$request->setDataTwig('title', 'Error!');
+			$request->setDataTwig('session', $_SESSION);
 			return self::statuses('CMD_ERROR');
 			//echo '<div class="alert alert-danger">This page has been accessed in error.</div>';
 			//include('./includes/footer.html');

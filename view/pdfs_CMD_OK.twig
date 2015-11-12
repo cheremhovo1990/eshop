@@ -2,7 +2,7 @@
 
 {% block content %}
     <h1>PDF Guides</h1>
-    {{ string }}
+    {{ string|raw }}
     {% for row in pdfs %}
         <div>
             <h4>
